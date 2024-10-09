@@ -1,10 +1,20 @@
 import { createRoot } from "react-dom/client";
+//CSS
 import "./index.css";
+//Router
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+//Pages
 import LoginPage from "./Pages/LoginPage.jsx";
 import RegisterPage from "./Pages/RegisterPage.jsx";
 import HomePage from "./Pages/HomePage.jsx";
+
+//App
 import App from "./App";
+
+//redux
+import { Provider } from "react-redux";
+import store from "./Store/store.js";
 
 const router = createBrowserRouter([
   {
@@ -28,5 +38,8 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router} />
+  <Provider store={store}>
+    {" "}
+    <RouterProvider router={router} />{" "}
+  </Provider>
 );

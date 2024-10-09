@@ -1,7 +1,11 @@
 import { useFormik } from "formik";
+import { useDispatch } from "react-redux";
 import * as Yup from "yup";
+import { registerUserAction } from "../Store/userSlice";
 
 const RegisterPage = () => {
+  const dispatch = useDispatch();
+
   const VALID_TYPE = ["image/png", "image/jpg", "image/jpeg"];
   const KB = 1024;
   const MB = KB * 1024;
@@ -32,6 +36,8 @@ const RegisterPage = () => {
     }),
     onSubmit: (values, { setSubmitting, resetForm }) => {
       console.log(values);
+
+      dispatch(registerUserAction(values));
       setSubmitting(false);
       resetForm();
     },
