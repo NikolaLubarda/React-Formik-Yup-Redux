@@ -4,16 +4,21 @@ const userSlice = createSlice({
   name: "user",
   initialState: {
     userData: {},
-    reducers: {
-      logginUserAction: (state, action) => {
-        console.log(action);
-      },
-      registerUserAction: (state, action) => {
-        console.log(action);
-      },
+    isActive: false,
+  },
+  reducers: {
+    logginUserAction: (state, action) => {
+      console.log(action);
+    },
+    registerUserAction: (state, action) => {
+      console.log(action.payload);
+    },
+    testAction: (state, action) => {
+      state.isActive = !state.isActive;
     },
   },
 });
 
-export const { logginUserAction, registerUserAction } = userSlice.actions;
+export const { logginUserAction, registerUserAction, testAction } =
+  userSlice.actions;
 export default userSlice.reducer;

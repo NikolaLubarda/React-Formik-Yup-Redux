@@ -1,6 +1,6 @@
 import React from "react";
 
-const LoginPage = ({ props }) => {
+const LoginPage = ({}) => {
   return <div>LoginPage</div>;
 };
 
