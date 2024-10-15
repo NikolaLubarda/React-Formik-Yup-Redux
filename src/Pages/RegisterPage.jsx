@@ -2,6 +2,7 @@ import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { registerUserAction } from "../Store/userSlice";
+import { FileParser } from "../Utilis/fileParser";
 
 const RegisterPage = () => {
   const dispatch = useDispatch();
@@ -20,24 +21,28 @@ const RegisterPage = () => {
       image: "",
       birthData: "",
     },
-    validationSchema: Yup.object({
-      firstname: Yup.string().required("You must enter name"),
-      lastname: Yup.string().required("You must enter surname"),
-      gender: Yup.string().required("You must choose gender"),
-      email: Yup.string().required("You must enter your email"),
-      password: Yup.string().required("You must enter password"),
-      birthData: Yup.string().required("You must enter your birth date"),
-      image: Yup.mixed()
-        .required("You must pick an image")
-        .test("fileType", "Wrong type image", (value) =>
-          VALID_TYPE.includes(value.type)
-        )
-        .test("fileSize", "Wrong file size", (value) => value.size < 2 * MB),
-    }),
+    // validationSchema: Yup.object({
+    //   firstname: Yup.string().required("You must enter name"),
+    //   lastname: Yup.string().required("You must enter surname"),
+    //   gender: Yup.string().required("You must choose gender"),
+    //   email: Yup.string().required("You must enter your email"),
+    //   password: Yup.string().required("You must enter password"),
+    //   birthData: Yup.string().required("You must enter your birth date"),
+    //   image: Yup.mixed()
+    //     .required("You must pick an image")
+    //     .test("fileType", "Wrong type image", (value) =>
+    //       VALID_TYPE.includes(value.type)
+    //     )
+    //     .test("fileSize", "Wrong file size", (value) => value.size < 2 * MB),
+    // }),
     onSubmit: (values, { setSubmitting, resetForm }) => {
+      FileParser(values.image)
+        .then((res) => {
+          dispatch(registerUserAction({ ...values, image: res }));
+        })
+        .catch((err) => console.log(err));
       console.log(values);
 
-      dispatch(registerUserAction(values));
       setSubmitting(false);
       resetForm();
     },
