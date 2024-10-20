@@ -7,8 +7,10 @@ const userSlice = createSlice({
     isActive: false,
   },
   reducers: {
-    logginUserAction: (state, action) => {
+    loggoutUserAction: (state, action) => {
       console.log(action);
+      state.userData = {};
+      localStorage.removeItem("test_user");
     },
     registerUserAction: (state, action) => {
       state.userData = action.payload;
@@ -26,7 +28,7 @@ const userSlice = createSlice({
 });
 
 export const {
-  logginUserAction,
+  loggoutUserAction,
   registerUserAction,
   testAction,
   resetoreUserAction,

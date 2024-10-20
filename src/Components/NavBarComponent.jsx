@@ -1,9 +1,16 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { NavLink, Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink, Link, useNavigate } from "react-router-dom";
+import { loggoutUserAction } from "../Store/userSlice";
 
 function NavBarComponent() {
   const { userData } = useSelector((state) => state.userStore);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  function loggOutUser() {
+    dispatch(loggoutUserAction);
+    navigate("/register");
+  }
   return (
     <nav className="flex justify-between items-center py-4 bg-gray-800 text-white">
       <div className="container mx-auto px-4">
@@ -18,7 +25,7 @@ function NavBarComponent() {
           </li>
           {localStorage.hasOwnProperty("test_user") ? (
             <div className="flex gap-[20px]">
-              <button>Log Out</button>
+              <button onClick={loggOutUser}>Log Out</button>
               <Link to="/profile">
                 <img
                   className="w-[50px] h-[50px] object-cover rounded-full"
