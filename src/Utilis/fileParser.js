@@ -1,5 +1,5 @@
 export const FileParser = (file) => {
-  return new Promise((resolve, rejecet) => {
+  return new Promise((resolve, reject) => {
     let fileRender = new FileReader();
 
     fileRender.readAsDataURL(file);

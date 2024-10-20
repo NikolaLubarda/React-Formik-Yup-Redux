@@ -3,9 +3,11 @@ import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { registerUserAction } from "../Store/userSlice";
 import { FileParser } from "../Utilis/fileParser";
+import { useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const VALID_TYPE = ["image/png", "image/jpg", "image/jpeg"];
   const KB = 1024;
@@ -41,6 +43,7 @@ const RegisterPage = () => {
           dispatch(registerUserAction({ ...values, image: res }));
         })
         .catch((err) => console.log(err));
+      navigate("/");
       console.log(values);
 
       setSubmitting(false);

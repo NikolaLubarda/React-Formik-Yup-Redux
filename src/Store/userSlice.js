@@ -12,13 +12,25 @@ const userSlice = createSlice({
     },
     registerUserAction: (state, action) => {
       console.log(action.payload);
+      state.userData = action.payload;
+
+      //local storage
+      localStorage.setItem("test_user", JSON.stringify(action.payload));
     },
     testAction: (state, action) => {
       state.isActive = !state.isActive;
     },
+    resetoreUserAction: (state, action) => {
+      console.log(action.payload);
+      state.userData = action.payload;
+    },
   },
 });
 
-export const { logginUserAction, registerUserAction, testAction } =
-  userSlice.actions;
+export const {
+  logginUserAction,
+  registerUserAction,
+  testAction,
+  resetoreUserAction,
+} = userSlice.actions;
 export default userSlice.reducer;
