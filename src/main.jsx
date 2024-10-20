@@ -15,6 +15,7 @@ import App from "./App";
 //redux
 import { Provider } from "react-redux";
 import store from "./Store/store.js";
+import ProfilePage from "./Pages/ProfilePage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,7 @@ const router = createBrowserRouter([
         path: "register",
         element: <RegisterPage />,
       },
+      { path: "profile", element: <ProfilePage /> },
     ],
   },
 ]);

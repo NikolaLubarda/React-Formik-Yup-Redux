@@ -11,7 +11,6 @@ const userSlice = createSlice({
       console.log(action);
     },
     registerUserAction: (state, action) => {
-      console.log(action.payload);
       state.userData = action.payload;
 
       //local storage
@@ -21,7 +20,6 @@ const userSlice = createSlice({
       state.isActive = !state.isActive;
     },
     resetoreUserAction: (state, action) => {
-      console.log(action.payload);
       state.userData = action.payload;
     },
   },
